@@ -1,4 +1,4 @@
-public class ProfilRelax extends ProfilBase {
+public class ProfilRelax extends ProfilBase implements ProfilBaseObserveur {
     @Override
     public void vendre() {
 
@@ -7,5 +7,10 @@ public class ProfilRelax extends ProfilBase {
     @Override
     public Boolean conditionObjectif() {
         return null;
+    }
+
+    @Override
+    public void update() {
+
     }
 }

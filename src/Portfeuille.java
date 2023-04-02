@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class Portfeuille {
+public class Portfeuille implements AggregateBase {
     private String nom;
     private int objectif;
     
@@ -13,5 +13,10 @@ public class Portfeuille {
         this.objectif = objectif;
         this.actions = actions;
         this.profil = profil;
+    }
+
+    @Override
+    public IteratorActionBase createIterator() {
+        return null;
     }
 }
