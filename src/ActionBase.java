@@ -2,19 +2,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ActionBase {
-    private final List<ProfilBaseObserveur> profils = new ArrayList<>();
+    private final List<PortfeuilBase> profils = new ArrayList<>();
 
-    public void attach(ProfilBaseObserveur p){
+    public void attach(PortfeuilBase p){
         profils.add(p);
     }
 
-    public void detach(ProfilBaseObserveur p){
+    public void detach(PortfeuilBase p){
         profils.remove(p);
     }
 
     public void notifier() {
-        for (ProfilBaseObserveur profilBaseObserveur : profils){
-            profilBaseObserveur.update();
+        for (PortfeuilBase portfeuilBase : profils){
+            portfeuilBase.update();
         }
     }
 }

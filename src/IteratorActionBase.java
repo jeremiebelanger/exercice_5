@@ -1,5 +1,6 @@
 public interface IteratorActionBase {
-    void setValeur(double nombre);
+    Object incrementerValeur(double nombre);
     double getValeur();
-
+    double getValeurInit();
+    Object valeurCourrante();
 }

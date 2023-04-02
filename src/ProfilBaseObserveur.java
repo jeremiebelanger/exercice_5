@@ -1,4 +1,0 @@
-interface ProfilBaseObserveur {
-    void update();
-}
-

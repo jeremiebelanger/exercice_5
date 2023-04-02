@@ -1,16 +1,9 @@
-public class ProfilPeureux extends ProfilBase implements ProfilBaseObserveur {
-    @Override
-    public void vendre() {
+import java.util.List;
 
-    }
+public class ProfilPeureux extends ProfilBase{
 
     @Override
-    public Boolean conditionObjectif() {
+    public Boolean conditionObjectif(int objectif, List<Action> actions) {
         return null;
-    }
-
-    @Override
-    public void update() {
-
     }
 }

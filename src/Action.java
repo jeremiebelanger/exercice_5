@@ -1,22 +1,44 @@
-public class Action extends ActionBase implements IteratorActionBase  {
+public class Action extends ActionBase implements IteratorActionBase{
 
-    private final Portfeuille portfeuille;
+    private String nom;
     private double valeur;
+    private double valeurInit;
 
-    public Action(Portfeuille portfeuille, double valeur) {
-        this.portfeuille = portfeuille;
-        this.valeur = valeur;
+    public Action(PortfeuilBase p) {
+        this.nom = nom;
     }
 
 
     @Override
-    public void setValeur(double nombre) {
+    public Object setValeur(double nombre) {
         this.valeur = nombre;
+        if(valeurInit == 0){
+            valeurInit = nombre;
+        }
         notifier();
+        //TODO
+        return null;
+    }
+
+    @Override
+    public Object incrementerValeur(double nombre) {
+        return null;
     }
 
     @Override
     public double getValeur() {
         return this.valeur;
     }
+
+    @Override
+    public double getValeurInit() {
+        return this.valeurInit;
+    }
+
+    @Override
+    public Object valeurCourrante() {
+
+    }
+
+
 }
