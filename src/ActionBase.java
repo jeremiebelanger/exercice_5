@@ -22,7 +22,7 @@ public abstract class ActionBase {
 
     /**
      * Permet de detacher les action de la liste.
-     * @param p
+     * @param p un portefeuille de base.
      */
     public void detach(PortfeuilleBase p){
         profils.remove(p);
