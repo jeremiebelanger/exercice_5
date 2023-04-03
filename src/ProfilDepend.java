@@ -2,8 +2,18 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Class pour créer un profil dépend.
+ *
+ * @author Jérémie Bélanger et Simon Lamarche Perrea
+ */
 public class ProfilDepend extends ProfilBase{
 
+    /**
+     * Les condition applicable au profile Détend.
+     * @param portfeuille les portefeuilles.
+     * @return la réponse si une des condition est remplis.
+     */
     @Override
     public Boolean conditionObjectif(Portfeuille portfeuille) {
         double montant = 0;
