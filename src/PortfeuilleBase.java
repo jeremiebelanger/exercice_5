@@ -1,0 +1,4 @@
+interface PortfeuilleBase {
+    void update();
+}
+

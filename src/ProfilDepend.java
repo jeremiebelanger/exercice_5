@@ -1,14 +1,24 @@
-import java.util.List;
-
 public class ProfilDepend extends ProfilBase{
 
 
     @Override
-    public Boolean conditionObjectif(int objectif, List<Action> actions) {
-        if(actions.get(0).getValeur() - actions.get(0).getValeurInit() > 5){
-            for (Action action : actions){
-
+    public Boolean conditionObjectif(int objectif, Action actions) {
+        double montant = 0;
+        if(actions.getValeur() - actions.getValeurInit() <= 5){
+            IteratorActionBase iterator = actions.createIterator();
+            Action action = (Action) iterator.first();
+            while(!iterator.isDone()){
+                if()
+                montant += action.getValeur();
+                action = (Action) iterator.next();
             }
         }
+
+        return false;
+    }
+
+    @Override
+    public void vendre() {
+
     }
 }

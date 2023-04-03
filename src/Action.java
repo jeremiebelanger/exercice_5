@@ -1,44 +1,49 @@
-public class Action extends ActionBase implements IteratorActionBase{
+import java.util.ArrayList;
+import java.util.List;
+
+public class Action extends ActionBase implements AggregateBase {
+
+    private final List<Action> actionList = new ArrayList<>();
 
     private String nom;
     private double valeur;
     private double valeurInit;
 
-    public Action(PortfeuilBase p) {
+    public Action(String nom, double valeurInit) {
         this.nom = nom;
+        this.valeurInit = valeurInit;
+        this.valeur = valeurInit;
     }
 
-
     @Override
-    public Object setValeur(double nombre) {
+    public IteratorActionBase createIterator() {
+        return new ConcreteIterator(this);
+    }
+    public int count() {
+        return actionList.size();
+    }
+    public void add(Action action) {
+        actionList.add(action);
+    }
+    public Action get(int position) {
+        return actionList.get(position);
+    }
+
+    public void setValeur(double nombre) {
         this.valeur = nombre;
-        if(valeurInit == 0){
-            valeurInit = nombre;
-        }
+        System.out.println("Changement de" + this.nom + " a " + nombre);
         notifier();
-        //TODO
-        return null;
     }
 
-    @Override
-    public Object incrementerValeur(double nombre) {
-        return null;
+    public String getNom(){
+        return this.nom;
     }
 
-    @Override
-    public double getValeur() {
-        return this.valeur;
-    }
-
-    @Override
-    public double getValeurInit() {
+    public double getValeurInit(){
         return this.valeurInit;
     }
 
-    @Override
-    public Object valeurCourrante() {
-
+    public double getValeur() {
+        return this.valeur;
     }
-
-
 }
