@@ -1,9 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Action extends ActionBase implements AggregateBase {
-
-    private final List<Action> actionList = new ArrayList<>();
+public class Action extends ActionBase{
 
     private String nom;
     private double valeur;
@@ -15,23 +13,9 @@ public class Action extends ActionBase implements AggregateBase {
         this.valeur = valeurInit;
     }
 
-    @Override
-    public IteratorActionBase createIterator() {
-        return new ConcreteIterator(this);
-    }
-    public int count() {
-        return actionList.size();
-    }
-    public void add(Action action) {
-        actionList.add(action);
-    }
-    public Action get(int position) {
-        return actionList.get(position);
-    }
-
     public void setValeur(double nombre) {
         this.valeur = nombre;
-        System.out.println("Changement de" + this.nom + " a " + nombre);
+        System.out.println("Changement de " + this.nom + " pour $" + nombre);
         notifier();
     }
 

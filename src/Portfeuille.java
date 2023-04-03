@@ -1,52 +1,66 @@
-public class Portfeuille implements PortfeuilleBase{
-    private Action actions;
-    private String nom;
-    private int objectif;
-    private ProfilBase profil;
+import java.util.ArrayList;
+import java.util.List;
 
-    public Portfeuille(String nom, int objectif, Action actions, ProfilBase profil) {
+public class Portfeuille implements PortfeuilleBase{
+
+    private List<Action> actions = new ArrayList<>();
+
+    private String nom;
+    private double objectif;
+
+    private ProfilBase profil;
+    private double valeurInit = 0;
+
+    public Portfeuille(String nom, double objectif, List<Action> actions, ProfilBase profil) {
         this.nom = nom;
         this.objectif = objectif;
         this.profil = profil;
         this.actions = actions;
-        actions.attach(this);
-    }
-
-    public Action getActions() {
-        return actions;
-    }
-
-    public void setActions(Action actions) {
-        this.actions = actions;
+        for (Action action : actions){
+            action.attach(this);
+            this.valeurInit += action.getValeur();
+        }
+        update();
     }
 
     public String getNom() {
         return nom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public List<Action> getActions() {
+        return actions;
     }
-
-    public int getObjectif() {
+    public double getObjectif() {
         return objectif;
     }
 
-    public void setObjectif(int objectif) {
-        this.objectif = objectif;
+    public void vendre(){
+        System.out.println("Vente d'actions du portefeuille " + this.nom +
+                "\n Valeur initiale : $" + this.valeurInit +
+                "\n Valeur actuelle : $" + getValeurPortfeuille() +
+                "\n Objectif : $" + this.objectif +
+                "\n Profit : $" + (getValeurPortfeuille() - valeurInit));
+    }
+
+    @Override
+    public void update() {
+        this.profil.verification(this);
+    }
+
+    public double getValeurInit() {
+        return this.valeurInit;
     }
 
     public ProfilBase getProfil() {
         return profil;
     }
 
-    public void setProfil(ProfilBase profil) {
-        this.profil = profil;
-    }
-
-    @Override
-    public void update() {
-        this.profil.verification(this);
+    public double getValeurPortfeuille(){
+        double montant = 0;
+        for ( Action action : actions){
+            montant += action.getValeur();
+        }
+        return montant;
     }
 
 }

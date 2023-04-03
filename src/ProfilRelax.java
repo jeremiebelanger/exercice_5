@@ -1,13 +1,14 @@
+import java.util.List;
+
 public class ProfilRelax extends ProfilBase{
 
 
     @Override
-    public Boolean conditionObjectif(int objectif, Action actions) {
-        return null;
-    }
-
-    @Override
-    public void vendre() {
-
+    public Boolean conditionObjectif(Portfeuille portfeuille) {
+        boolean contrat = false;
+        if(portfeuille.getValeurPortfeuille() < portfeuille.getValeurInit()){
+            contrat = true;
+        }
+        return contrat ;
     }
 }

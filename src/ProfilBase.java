@@ -1,12 +1,21 @@
+import java.util.List;
+
 public abstract class ProfilBase {
     public final void verification(Portfeuille portfeuille) {
-        if (conditionObjectif(portfeuille.getObjectif(),portfeuille.getActions())){
-            System.out.println("objectif atteind");
-            vendre();
+        System.out.println("################### \n" +
+                "Évaluation du portefeuille : " + portfeuille.getNom() + " avec profil : " +  portfeuille.getProfil().getClass().getName() +
+                "\n Résultat:");
+        if (conditionObjectif(portfeuille)){
+            System.out.println("objectif atteint");
+                portfeuille.vendre();
         }
+        if (portfeuille.getObjectif() <= portfeuille.getValeurPortfeuille()) {
+            portfeuille.vendre();
+        }
+        System.out.println("On laisse ça comme ça.");
+        System.out.println("################### \n");
     }
 
-    public  abstract Boolean conditionObjectif(int objectif , Action actions);
-    public abstract void  vendre();
+    public  abstract Boolean conditionObjectif(Portfeuille portfeuille);
 
 }

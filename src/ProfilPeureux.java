@@ -1,12 +1,13 @@
+import java.util.List;
+
 public class ProfilPeureux extends ProfilBase{
-
     @Override
-    public Boolean conditionObjectif(int objectif, Action actions) {
-        return null;
-    }
+    public Boolean conditionObjectif(Portfeuille portfeuille) {
 
-    @Override
-    public void vendre() {
-
+        boolean contrat = false;
+        if(portfeuille.getValeurPortfeuille() < portfeuille.getValeurInit()){
+            contrat = true;
+        }
+        return contrat ;
     }
 }
