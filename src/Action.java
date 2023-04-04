@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Classe qui créer les actions
  *
@@ -20,7 +17,7 @@ public class Action extends ActionBase{
     /**
      * Permet d'avoir en tous temps la valeur initatial de l'action
      */
-    private double valeurInit;
+    private double ancienneValeur;
 
     /**
      * Le constructeur
@@ -29,7 +26,7 @@ public class Action extends ActionBase{
      */
     public Action(String nom, double valeurInit) {
         this.nom = nom;
-        this.valeurInit = valeurInit;
+        this.ancienneValeur = valeurInit;
         this.valeur = valeurInit;
     }
 
@@ -38,8 +35,9 @@ public class Action extends ActionBase{
      * @param nombre la nouvelle valeur de l'action.
      */
     public void setValeur(double nombre) {
+        this.ancienneValeur = this.valeur;
+        System.out.println("Changement de prix pour " + this.nom + " : $" + this.valeur + " ---> $" + nombre);
         this.valeur = nombre;
-        System.out.println("Changement de " + this.nom + " pour $" + nombre);
         notifier();
     }
 
@@ -55,8 +53,8 @@ public class Action extends ActionBase{
      * Prend la valeur initial de l'action.
      * @return la valeur initial de l'action.
      */
-    public double getValeurInit(){
-        return this.valeurInit;
+    public double getAncienneValeur(){
+        return this.ancienneValeur;
     }
 
     /**

@@ -1,4 +1,3 @@
-import java.util.List;
 /**
  * Class pour créer un profil relax.
  *
@@ -11,11 +10,10 @@ public class ProfilRelax extends ProfilBase{
      * @return la réponse si une des condition est remplis.
      */
     @Override
-    public Boolean conditionObjectif(Portfeuille portfeuille) {
-        boolean contrat = false;
-        if(portfeuille.getValeurPortfeuille() < portfeuille.getValeurInit()){
-            contrat = true;
+    public Boolean conditionObjectif(Portefeuille portfeuille) {
+        if(portfeuille.getValeurPortfeuille() < portfeuille.getValeurInitPortefeuille()){
+            System.out.println("TKT big tu va survivre");
         }
-        return contrat ;
+        return false ;
     }
 }

@@ -1,4 +1,3 @@
-import java.util.List;
 /**
  * Class pour créer un profil peureux.
  *
@@ -11,12 +10,15 @@ public class ProfilPeureux extends ProfilBase{
      * @return la réponse si une des condition est remplis.
      */
     @Override
-    public Boolean conditionObjectif(Portfeuille portfeuille) {
-
-        boolean contrat = false;
-        if(portfeuille.getValeurPortfeuille() < portfeuille.getValeurInit()){
-            contrat = true;
+    public Boolean conditionObjectif(Portefeuille portfeuille) {
+        for (Action action : portfeuille.getActions()){
+            if(action.getValeur() < action.getAncienneValeur()){
+                if(portfeuille.getValeurPortfeuille() < portfeuille.getValeurInitPortefeuille()){
+                    System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH");
+                    return  true;
+                }
+            }
         }
-        return contrat ;
+        return false ;
     }
 }

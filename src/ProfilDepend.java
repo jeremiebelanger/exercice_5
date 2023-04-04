@@ -1,7 +1,3 @@
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
 /**
  * Class pour créer un profil dépend.
  *
@@ -15,19 +11,19 @@ public class ProfilDepend extends ProfilBase{
      * @return la réponse si une des condition est remplis.
      */
     @Override
-    public Boolean conditionObjectif(Portfeuille portfeuille) {
-        double montant = 0;
+    public Boolean conditionObjectif(Portefeuille portfeuille) {
+        int nbFois = 0;
         boolean contrat = false;
         for(Action action : portfeuille.getActions()){
-            if(action.getValeur() - action.getValeurInit() <= 5){
-                montant += action.getValeur();
+            if(action.getAncienneValeur() - action.getValeur() > 5 && action.getAncienneValeur() > action.getValeur()){
+                nbFois++;
             }
         }
-        if(montant >= (portfeuille.getValeurPortfeuille() / 2)){
+        if((nbFois * 100 / portfeuille.getActions().size()) >= 50 ){
             contrat = true;
         }
-        if(portfeuille.getValeurPortfeuille() < portfeuille.getValeurInit()){
-            System.out.println("Attentio tu va mourrir (Dans le monde de la finance) \n");
+        if(portfeuille.getValeurPortfeuille() < portfeuille.getValeurInitPortefeuille()){
+            System.out.println("Aveeeeeee MAAAAARIIIIIIEEEEEEEE");
         }
 
         return contrat ;

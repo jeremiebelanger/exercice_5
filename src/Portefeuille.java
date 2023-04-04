@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -6,13 +5,12 @@ import java.util.List;
  *
  * @author Jérémie Bélanger et Simon Lamarche Perrea
  */
-public class Portfeuille implements PortfeuilleBase{
+public class Portefeuille implements PortefeuilleBase {
 
-    private List<Action> actions = new ArrayList<>();
+    private List<Action> actions;
 
     private String nom;
     private double objectif;
-
     private ProfilBase profil;
     private double valeurInit = 0;
 
@@ -23,16 +21,47 @@ public class Portfeuille implements PortfeuilleBase{
      * @param actions les actions que détiens le portefeuille.
      * @param profil le style de profil du portefeuille.
      */
-    public Portfeuille(String nom, double objectif, List<Action> actions, ProfilBase profil) {
+    public Portefeuille(String nom, double objectif, List<Action> actions, ProfilBase profil) {
+        String nomDepart = "";
         this.nom = nom;
         this.objectif = objectif;
         this.profil = profil;
         this.actions = actions;
         for (Action action : actions){
-            action.attach(this);
+            if(!nomDepart.equals(action.getNom())){
+                action.attach(this);
+                nomDepart = action.getNom();
+            }
             this.valeurInit += action.getValeur();
         }
-        update();
+        if(objectif <= valeurInit){
+            System.out.println("Objectif déja atteint.");
+            vendre();
+        }
+    }
+
+    /**
+     * Constructeur du poretfeuille sans profil.
+     * @param nom le nom du portefeuille.
+     * @param objectif l'objectif à atteindre du portefeuille.
+     * @param actions les actions que détiens le portefeuille.
+     */
+    public Portefeuille(String nom, double objectif, List<Action> actions) {
+        String nomDepart = "";
+        this.nom = nom;
+        this.objectif = objectif;
+        this.actions = actions;
+        for (Action action : actions){
+            if(!nomDepart.equals(action.getNom())){
+                action.attach(this);
+                nomDepart = action.getNom();
+            }
+            this.valeurInit += action.getValeur();
+        }
+        if(objectif <= valeurInit){
+            System.out.println("Objectif déja atteint.");
+            vendre();
+        }
     }
 
     /**
@@ -67,7 +96,14 @@ public class Portfeuille implements PortfeuilleBase{
                 "\n Valeur initiale : $" + this.valeurInit +
                 "\n Valeur actuelle : $" + getValeurPortfeuille() +
                 "\n Objectif : $" + this.objectif +
-                "\n Profit : $" + (getValeurPortfeuille() - valeurInit));
+                "\n Profit : $" + (getValeurPortfeuille() - valeurInit) + "\n");
+        String nomDepart = "";
+        for (Action action : actions) {
+            if (!nomDepart.equals(action.getNom())) {
+                action.detach(this);
+                nomDepart = action.getNom();
+            }
+        }
     }
 
     /**
@@ -82,7 +118,7 @@ public class Portfeuille implements PortfeuilleBase{
      * Permet de prendre la valeur initiale d'un action
      * @return la valeur initial d'un action
      */
-    public double getValeurInit() {
+    public double getValeurInitPortefeuille() {
         return this.valeurInit;
     }
 
@@ -104,6 +140,15 @@ public class Portfeuille implements PortfeuilleBase{
             montant += action.getValeur();
         }
         return montant;
+    }
+
+    /**
+     * La fonction setProfil pour changer le profil d'un portefeuille lors de l'éxécution.
+     * @param profil le nouveau profil.
+     */
+    public void setProfil(ProfilBase profil) {
+        System.out.println("\n Changement de profil pour portefeuille : " + this.nom + " : " + profil.getClass().getName());
+        this.profil = profil;
     }
 
 }

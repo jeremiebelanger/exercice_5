@@ -1,5 +1,3 @@
-import java.util.List;
-
 /**
  * Class abstraite qui est la base de ce qu'est un profile.
  *
@@ -11,18 +9,18 @@ public abstract class ProfilBase {
      * et quand on doit vendre le portefeuille.
      * @param portfeuille les portefeuille.
      */
-    public final void verification(Portfeuille portfeuille) {
+    public final void verification(Portefeuille portfeuille) {
         System.out.println("################### \n" +
                 "Évaluation du portefeuille : " + portfeuille.getNom() + " avec profil : " +  portfeuille.getProfil().getClass().getName() +
                 "\n Résultat:");
         if (conditionObjectif(portfeuille)){
-            System.out.println("objectif atteint");
                 portfeuille.vendre();
-        }
-        if (portfeuille.getObjectif() <= portfeuille.getValeurPortfeuille()) {
+        } else if (portfeuille.getObjectif() <= portfeuille.getValeurPortfeuille()) {
+            System.out.println("objectif atteint");
             portfeuille.vendre();
+        } else {
+            System.out.println("On laisse ça comme ça.");
         }
-        System.out.println("On laisse ça comme ça.");
         System.out.println("################### \n");
     }
 
@@ -31,6 +29,6 @@ public abstract class ProfilBase {
      * @param portfeuille les portefeuilles.
      * @return la réponse de la condition ajouter.
      */
-    public  abstract Boolean conditionObjectif(Portfeuille portfeuille);
+    public  abstract Boolean conditionObjectif(Portefeuille portfeuille);
 
 }

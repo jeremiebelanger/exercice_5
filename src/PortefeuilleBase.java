@@ -3,7 +3,7 @@
  *
  * @author Jérémie Bélanger et Simon Lamarche Perrea
  */
-interface PortfeuilleBase {
+interface PortefeuilleBase {
     void update();
 }
 

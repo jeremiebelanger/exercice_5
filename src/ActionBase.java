@@ -10,30 +10,32 @@ public abstract class ActionBase {
     /**
      * List permettant se stocker tous les actions dans une liste.
      */
-    private final List<PortfeuilleBase> profils = new ArrayList<>();
+    private final List<PortefeuilleBase> portfeuilleBases = new ArrayList<>();
 
     /**
      * Permet d'attacher les action à la liste
+     *
      * @param p un portefeuille de base.
      */
-    public void attach(PortfeuilleBase p){
-        profils.add(p);
+    public void attach(PortefeuilleBase p) {
+        portfeuilleBases.add(p);
     }
 
     /**
      * Permet de detacher les action de la liste.
+     *
      * @param p un portefeuille de base.
      */
-    public void detach(PortfeuilleBase p){
-        profils.remove(p);
+    public void detach(PortefeuilleBase p) {
+        portfeuilleBases.remove(p);
     }
 
     /**
      * Methode permettant d'avertir les action qu'il y a un changement.
      */
     public void notifier() {
-        for (PortfeuilleBase portfeuilBase : profils){
-            portfeuilBase.update();
+        for (int i = 0 ; i < portfeuilleBases.size(); i++) {
+            portfeuilleBases.get(i).update();
         }
     }
 }
